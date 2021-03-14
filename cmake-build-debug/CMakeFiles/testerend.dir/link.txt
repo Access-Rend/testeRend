@@ -1,0 +1,3 @@
+D:\JetBrians\apps\CLion\ch-0\203.7148.70\bin\cmake\win\bin\cmake.exe -E rm -f CMakeFiles\testerend.dir/objects.a
+C:\MinGW\bin\ar.exe cr CMakeFiles\testerend.dir/objects.a @CMakeFiles\testerend.dir\objects1.rsp
+C:\MinGW\bin\g++.exe --static -fPIC -Og -g -g   -Wl,--whole-archive CMakeFiles\testerend.dir/objects.a -Wl,--no-whole-archive  -o testerend.exe -Wl,--out-implib,libtesterend.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\testerend.dir\linklibs.rsp

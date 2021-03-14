@@ -1,0 +1,25 @@
+cmake_minimum_required(VERSION 3.4)
+project(testerend)
+set(CMAKE_CXX_STANDARD 14)
+
+include_directories(include)
+
+set(SRC sources/sys.cpp sources/str.cpp sources/main.cpp sources/parser.cpp)
+
+if (MSVC)
+    set(CMAKE_CXX_FLAGS "/O2 /EHsc /utf-8 /w")
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+elseif (CMAKE_COMPILER_IS_GNUCXX)
+    if (WIN32)
+        set(CMAKE_C_FLAGS "--static -fPIC -Og -g")
+        set(CMAKE_CXX_FLAGS "--static -fPIC -Og -g")
+    else ()
+        set(CMAKE_C_FLAGS "-fPIC -s -O3")
+        set(CMAKE_CXX_FLAGS "-fPIC -s -O3")
+    endif ()
+else ()
+    set(CMAKE_C_FLAGS "-fPIC -O3")
+    set(CMAKE_CXX_FLAGS "-fPIC -O3")
+endif ()
+
+add_executable(testerend ${SRC})
