@@ -47,7 +47,7 @@ namespace str{
                 return false;
         return true;
     }
-    std::string to_platform_path(const std::string &path){
+    std::string to_dir_path(const std::string &path){
         std::string res;
         for(auto &c : path){
             if(c=='\\' || c=='/')
@@ -57,6 +57,18 @@ namespace str{
         }
         if(*(res.end()-1)!=delimiter)
             res.push_back(delimiter);
+        return res;
+    }
+    std::string to_file_path(const std::string &path){
+        std::string res;
+        for(auto &c : path){
+            if(c=='\\' || c=='/')
+                res.push_back(delimiter);
+            else
+                res.push_back(c);
+        }
+        if(*(res.end()-1)==delimiter)
+            *(res.end()-1) = '\0';
         return res;
     }
     std::string lower_case(const std::string &s) {

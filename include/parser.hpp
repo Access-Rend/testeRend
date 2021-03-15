@@ -15,8 +15,8 @@
 
 namespace tester{
     class instruction{
+public:
         ~instruction() = default;
-    public:
         virtual void execute() = 0;
         std::vector<std::string> object;
         int id, line;

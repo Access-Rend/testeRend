@@ -90,7 +90,7 @@ namespace tester{
 namespace tester {
     parser::parser(std::string &path) {
         try {
-            path = str::to_platform_path(path);
+            path = str::to_dir_path(path);
 
             if (!sys::exist(path))
                 throw std::invalid_argument("path \"" + path + "\" not exist.");

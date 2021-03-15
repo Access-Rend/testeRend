@@ -21,5 +21,6 @@ namespace str{
     bool is_path(const std::string &);
     bool path_compare(std::string , std::string );
     bool weak_equal(const std::string &, const std::string &);
-    std::string to_platform_path(const std::string &);
+    std::string to_dir_path(const std::string &);
+    std::string to_file_path(const std::string &);
 }

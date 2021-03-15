@@ -84,9 +84,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="D:/mywork/testeRend/include/parser.hpp">
-			<Option target="testerend"/>
-		</Unit>
 		<Unit filename="D:/mywork/testeRend/sources/main.cpp">
 			<Option target="testerend"/>
 		</Unit>

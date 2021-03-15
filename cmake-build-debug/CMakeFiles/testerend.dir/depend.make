@@ -5,6 +5,11 @@ CMakeFiles/testerend.dir/sources/main.cpp.obj: ../include/str.hpp
 CMakeFiles/testerend.dir/sources/main.cpp.obj: ../include/sys.hpp
 CMakeFiles/testerend.dir/sources/main.cpp.obj: ../sources/main.cpp
 
+CMakeFiles/testerend.dir/sources/parser.cpp.obj: ../include/parser.hpp
+CMakeFiles/testerend.dir/sources/parser.cpp.obj: ../include/str.hpp
+CMakeFiles/testerend.dir/sources/parser.cpp.obj: ../include/sys.hpp
+CMakeFiles/testerend.dir/sources/parser.cpp.obj: ../sources/parser.cpp
+
 CMakeFiles/testerend.dir/sources/str.cpp.obj: ../include/str.hpp
 CMakeFiles/testerend.dir/sources/str.cpp.obj: ../sources/str.cpp
 

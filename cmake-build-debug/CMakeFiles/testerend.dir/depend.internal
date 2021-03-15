@@ -5,6 +5,11 @@ CMakeFiles/testerend.dir/sources/main.cpp.obj
  ../include/str.hpp
  ../include/sys.hpp
  D:/mywork/testeRend/sources/main.cpp
+CMakeFiles/testerend.dir/sources/parser.cpp.obj
+ ../include/parser.hpp
+ ../include/str.hpp
+ ../include/sys.hpp
+ D:/mywork/testeRend/sources/parser.cpp
 CMakeFiles/testerend.dir/sources/str.cpp.obj
  ../include/str.hpp
  D:/mywork/testeRend/sources/str.cpp

@@ -16,6 +16,7 @@
 #include <string>
 #include <cstdio>
 #include <str.hpp>
+#include <dir.h>
 
 #ifdef _WIN32
 #include <direct.h>        //for mkdir rmdir

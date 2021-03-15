@@ -12,13 +12,13 @@
 #define delimiter '/'
 #endif
 bool sys::exist(std::string path) {
-    path = str::to_platform_path(path);
+    path = str::to_dir_path(path);
     return ACCESS(path.c_str(), 0) == 0;
 }
 
 namespace sys::file{
     std::string compare(std::string file_1, std::string file_2){
-        file_1 = str::to_platform_path(file_1); file_2 = str::to_platform_path(file_2);
+        file_1 = str::to_file_path(file_1); file_2 = str::to_file_path(file_2);
         std::ifstream ifs_1(file_1), ifs_2(file_2);
         std::string l1,l2;
         int line = 0;
@@ -36,16 +36,13 @@ namespace sys::file{
         return "nothing different.";
     }
     bool create(std::string path){
-        path = str::to_platform_path(path);
-        std::ofstream ofs;
+        path = str::to_file_path(path);
         for(int i = path.size()-1; i>=0 ; i--)
             if(path[i]==delimiter){
                 sys::dir::create(path.substr(0,i));
-                ofs.open(path);
                 break;
             }
-        ofs.close();
-        ofs.open(path);
+        std::ofstream ofs(path);
         if(!ofs.is_open()){
             ofs.close();
             return false;
@@ -53,18 +50,15 @@ namespace sys::file{
         ofs.close();
         return true;
     }
-    bool rm(std::string path) {
-        path = str::to_platform_path(path);
-        return remove(path)==0;
-    }
-    bool remove(std::string path){
-        return rm(path);
+    bool remove(std::string path) {
+        path = str::to_file_path(path);
+        return ::remove(path.c_str())==0;
     }
 }
 
 namespace sys::dir {
     bool create(std::string path) { // 存在则不建立
-        path = str::to_platform_path(path);
+        path = str::to_dir_path(path);
         for (int i = 0; i < path.size(); i++) {
             if (path[i] != delimiter)
                 continue;
@@ -79,8 +73,8 @@ namespace sys::dir {
         return true;
     }
 
-    bool rm(std::string path) {
-        std::string strPath = str::to_platform_path(path);
+    bool remove(std::string path) {
+        std::string strPath = str::to_dir_path(path);
 #ifdef _WIN32
         struct _finddata_t fb;
         if (strPath.at(strPath.length() - 1) != '\\' || strPath.at(strPath.length() - 1) != '/')
@@ -94,16 +88,15 @@ namespace sys::dir {
                 if (strcmp(fb.name, "..") != 0 && strcmp(fb.name, ".") != 0) {
                     pathTemp.clear();
                     pathTemp = strPath + std::string(fb.name);
-                    if (fb.attrib == _A_SUBDIR)//_A_SUBDIR=16
-                        rm(pathTemp.c_str());
+                    if (fb.attrib == _A_SUBDIR)//_A_SUBDIR=16 it is dir
+                        sys::dir::remove(pathTemp.c_str());
                     else
-                        remove(pathTemp.c_str());
+                        ::remove(pathTemp.c_str());
                 }
-            }
-            while (0 == _findnext(handle, &fb));
+            } while (0 == _findnext(handle, &fb));
             _findclose(handle);
         }
-        return rm(strPath.c_str()) == 0 ? true : false;
+        return ::RMDIR(strPath.c_str()) == 0;
 
 #elif __linux__
     if (strPath.at(strPath.length() - 1) != '\\' || strPath.at(strPath.length() - 1) != '/')
@@ -118,17 +111,14 @@ namespace sys::dir {
 				fileName = strPath + std::string(dt->d_name);
 				stat(fileName.c_str(), &st);
 				if (S_ISDIR(st.st_mode))
-					rm(fileName);
+					sys::dir::remove(fileName);
 				else
-					remove(fileName.c_str());
+					::remove(fileName.c_str());
 			}
 		}
 		closedir(d);
 	}
-	return rm(strPath.c_str())==0?true:false;
+	return ::RMDIR(strPath.c_str())==0;
 #endif
-    }
-    bool remove(std::string path){
-        return sys::dir::rm(path);
     }
 }

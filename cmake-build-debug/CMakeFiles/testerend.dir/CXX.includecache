@@ -31,6 +31,8 @@ cstdio
 -
 str.hpp
 -
+dir.h
+-
 direct.h
 -
 io.h
@@ -46,13 +48,5 @@ D:/mywork/testeRend/sources/main.cpp
 sys.hpp
 -
 str.hpp
--
-
-D:/mywork/testeRend/sources/str.cpp
-str.hpp
--
-
-D:/mywork/testeRend/sources/sys.cpp
-sys.hpp
 -
 
